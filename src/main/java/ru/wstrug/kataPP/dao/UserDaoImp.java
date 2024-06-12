@@ -3,12 +3,10 @@ package ru.wstrug.kataPP.dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.PersistenceContextType;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.persistence.Query;
 import org.springframework.stereotype.Repository;
 import ru.wstrug.kataPP.model.User;
 
-//import javax.persistence.*;
 import java.util.List;
 
 @Repository
@@ -23,8 +21,11 @@ public class UserDaoImp implements UserDao {
 
    @Override
    public void deleteUserById(int id) {
-      User user = em.find(User.class, id);
-      em.remove(user);
+      //User user = em.find(User.class, id);
+      //em.remove(user);
+      Query query = em.createQuery("Delete  from User u where u.id = :id");
+      query.setParameter("id", id);
+      query.executeUpdate();
    }
 
    @Override
