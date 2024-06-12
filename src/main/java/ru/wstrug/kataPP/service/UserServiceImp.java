@@ -23,7 +23,7 @@ public class UserServiceImp implements UserService {
 
    @Transactional
    @Override
-   public void deleteUserById(Long id) { userDao.deleteUserById(id); }
+   public void deleteUserById(int id) { userDao.deleteUserById(id); }
 
    @Transactional(readOnly = true)
    @Override
@@ -33,11 +33,11 @@ public class UserServiceImp implements UserService {
 
    @Transactional
    @Override
-   public void updateUserById(User user, Long id) { userDao.updateUserById(user, id); }
+   public void updateUserById(User user, int id) { userDao.updateUserById(user, id); }
 
    @Transactional
    @Override
-   public User getUserById(Long id) { return userDao.getUserById(id); }
+   public User getUserById(int id) { return userDao.getUserById(id); }
 
    @Transactional
    @Override

@@ -22,7 +22,7 @@ public class UserDaoImp implements UserDao {
    }
 
    @Override
-   public void deleteUserById(Long id) {
+   public void deleteUserById(int id) {
       User user = em.find(User.class, id);
       em.remove(user);
    }
@@ -34,13 +34,13 @@ public class UserDaoImp implements UserDao {
    }
 
    @Override
-   public User getUserById(Long id) {
+   public User getUserById(int id) {
       return em.find(User.class, id);
 
    }
 
    @Override
-   public void updateUserById(User user, Long id) {
+   public void updateUserById(User user, int id) {
       em.merge(user);
    }
 

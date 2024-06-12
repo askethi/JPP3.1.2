@@ -37,25 +37,25 @@ public class UserController {
     }
 
     @GetMapping("/edit")
-    public String edit(Model model, @RequestParam("id") Long id) {
+    public String edit(Model model, @RequestParam("id") int id) {
         model.addAttribute("user", us.getUserById(id));
         return "users/edit";
     }
 
     @PostMapping("/")
-    public String update(@ModelAttribute("person") User user, @RequestParam("id") Long id) {
+    public String update(@ModelAttribute("person") User user, @RequestParam("id") int id) {
         us.updateUserById(user, id);
         return "redirect:/users";
     }
 
     @GetMapping("/")
-    public String show(@RequestParam("id") Long id, Model model) {
+    public String show(@RequestParam("id") int id, Model model) {
         model.addAttribute("user", us.getUserById(id));
         return "users/show";
     }
 
     @PostMapping("/show")
-    public String delete(@RequestParam("id") Long id) {
+    public String delete(@RequestParam("id") int id) {
         us.deleteUserById(id);
         return "redirect:/users";
     }
