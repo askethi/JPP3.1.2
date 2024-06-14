@@ -6,16 +6,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.wstrug.kataPP.model.User;
 import ru.wstrug.kataPP.service.UserService;
+import ru.wstrug.kataPP.service.UserServiceImp;
 
 
 @Controller
 @RequestMapping("/users")
 public class UserController {
 
-    final UserService us;
+    final UserServiceImp us;
 
     @Autowired
-    public UserController(UserService us) {
+    public UserController(UserServiceImp us) {
         this.us = us;
     }
 
@@ -54,7 +55,7 @@ public class UserController {
         return "users/show";
     }
 
-    @PostMapping("/show")
+    @PostMapping("/delete")
     public String delete(@RequestParam("id") int id) {
         us.deleteUserById(id);
         return "redirect:/users";

@@ -1,14 +1,17 @@
 package ru.wstrug.kataPP.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import ru.wstrug.kataPP.model.User;
 
 import java.util.List;
 
-public interface UserDao {
-   void add(User user);
-   void deleteUserById(int id);
-   void updateUserById(User user, int id);
-   List<User> listUsers();
-   User getUserById(int id);
-   int clean();
+@Repository
+public interface UserDao extends JpaRepository<User, Integer> {
+//   void add(User user);
+//   void deleteUserById(int id);
+//   void updateUserById(User user, int id);
+//   List<User> listUsers();
+//   User getUserById(int id);
+//   int clean();
 }

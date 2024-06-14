@@ -1,6 +1,7 @@
 package ru.wstrug.kataPP.model;
 
 import jakarta.persistence.*;
+import org.springframework.context.annotation.Primary;
 
 import java.util.Objects;
 

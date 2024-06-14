@@ -8,39 +8,41 @@ import ru.wstrug.kataPP.dao.UserDao;
 import ru.wstrug.kataPP.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class UserServiceImp implements UserService {
+public class UserServiceImp {
+
+
+   private final UserDao userDao;
 
    @Autowired
-   private UserDao userDao;
-
-   @Transactional
-   @Override
-   public void add(User user) {
-      userDao.add(user);
+   UserServiceImp(UserDao userDao) {
+      this.userDao = userDao;
    }
 
    @Transactional
-   @Override
-   public void deleteUserById(int id) { userDao.deleteUserById(id); }
+   public void add(User user) {
+      userDao.save(user);
+   }
+
+   @Transactional
+   public void deleteUserById(int id) { userDao.deleteById(id); }
 
    @Transactional(readOnly = true)
-   @Override
    public List<User> listUsers() {
-      return userDao.listUsers();
+      return userDao.findAll();
    }
 
    @Transactional
-   @Override
-   public void updateUserById(User user, int id) { userDao.updateUserById(user, id); }
+   public void updateUserById(User user, int id) {
+      user.setId(id);
+      userDao.save(user); }
 
    @Transactional
-   @Override
-   public User getUserById(int id) { return userDao.getUserById(id); }
-
-   @Transactional
-   @Override
-   public int clean() { return userDao.clean(); }
+   public User getUserById(int id) {
+      Optional<User> user = userDao.findById(id);
+      return user.orElse(null);
+   }
 
 }
