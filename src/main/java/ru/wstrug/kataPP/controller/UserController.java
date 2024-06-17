@@ -13,16 +13,16 @@ import ru.wstrug.kataPP.service.UserServiceImp;
 @RequestMapping("/users")
 public class UserController {
 
-    final UserServiceImp us;
+    final UserServiceImp userService;
 
     @Autowired
-    public UserController(UserServiceImp us) {
-        this.us = us;
+    public UserController(UserServiceImp userService) {
+        this.userService = userService;
     }
 
     @GetMapping()
     public String index(Model model) {
-        model.addAttribute("users", us.listUsers());
+        model.addAttribute("users", userService.listUsers());
         return "users/index";
     }
 
@@ -33,31 +33,31 @@ public class UserController {
 
     @PostMapping()
     public String create(@ModelAttribute("user") User user) {
-        us.add(user);
+        userService.add(user);
         return "redirect:/users";
     }
 
     @GetMapping("/edit")
     public String edit(Model model, @RequestParam("id") int id) {
-        model.addAttribute("user", us.getUserById(id));
+        model.addAttribute("user", userService.getUserById(id));
         return "users/edit";
     }
 
     @PostMapping("/")
-    public String update(@ModelAttribute("person") User user, @RequestParam("id") int id) {
-        us.updateUserById(user, id);
+    public String update(User user, @RequestParam("id") int id) {
+        userService.updateUserById(user, id);
         return "redirect:/users";
     }
 
     @GetMapping("/")
     public String show(@RequestParam("id") int id, Model model) {
-        model.addAttribute("user", us.getUserById(id));
+        model.addAttribute("user", userService.getUserById(id));
         return "users/show";
     }
 
     @PostMapping("/delete")
     public String delete(@RequestParam("id") int id) {
-        us.deleteUserById(id);
+        userService.deleteUserById(id);
         return "redirect:/users";
     }
 }

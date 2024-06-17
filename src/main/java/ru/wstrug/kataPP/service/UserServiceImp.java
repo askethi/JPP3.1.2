@@ -10,6 +10,7 @@ import ru.wstrug.kataPP.model.User;
 import java.util.List;
 import java.util.Optional;
 
+@Transactional(readOnly = true)
 @Service
 public class UserServiceImp {
 
@@ -29,7 +30,6 @@ public class UserServiceImp {
    @Transactional
    public void deleteUserById(int id) { userDao.deleteById(id); }
 
-   @Transactional(readOnly = true)
    public List<User> listUsers() {
       return userDao.findAll();
    }
@@ -39,7 +39,6 @@ public class UserServiceImp {
       user.setId(id);
       userDao.save(user); }
 
-   @Transactional
    public User getUserById(int id) {
       Optional<User> user = userDao.findById(id);
       return user.orElse(null);
