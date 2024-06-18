@@ -13,10 +13,10 @@ import ru.wstrug.kataPP.service.UserServiceImp;
 @RequestMapping("/users")
 public class UserController {
 
-    final UserServiceImp userService;
+    private final UserService userService;
 
     @Autowired
-    public UserController(UserServiceImp userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
